@@ -6,6 +6,12 @@
 // if the last reviewer is a loyalty User, can you add a star to the end of their name?
 // please do so in the existing function, and make sure to declare what type of 
 // parameters the function takes.
+// Can you fix my code to show 'Welcome back Bobby' in the Nav Bar for 
+// our couch surfing website? Do this by assigning types to the parameters
+// we pass to our populateUser function, so that we can be aware of
+// errors in our user objects in the future.
+var returningUserDisplay = document.querySelector('#returning-user');
+var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
 var reviews = [
     {
@@ -62,3 +68,14 @@ function getLatestVisitorData(reviews) {
 }
 getLatestVisitorData(reviews);
 totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
+var you = {
+    userName: 'Bobby',
+    isReturning: true
+};
+function populateUser(isReturning, userName) {
+    if (isReturning) {
+        returningUserDisplay.innerHTML = 'back';
+    }
+    userNameDisplay.innerHTML = userName;
+}
+populateUser(you.isReturning, you.userName);
