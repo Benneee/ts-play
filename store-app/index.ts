@@ -9,6 +9,13 @@
 // please do so in the existing function, and make sure to declare what type of 
 // parameters the function takes.
 
+// Can you fix my code to show 'Welcome back Bobby' in the Nav Bar for 
+// our couch surfing website? Do this by assigning types to the parameters
+// we pass to our populateUser function, so that we can be aware of
+// errors in our user objects in the future.
+
+const returningUserDisplay = document.querySelector('#returning-user')
+const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 
 const reviews = [
@@ -78,3 +85,18 @@ totalReviews(
     getLatestVisitorData(reviews)['name'], 
     getLatestVisitorData(reviews)['loyaltyUser']
 )
+
+const you = {
+    userName: 'Bobby',
+    isReturning: true,
+}
+
+
+function populateUser(isReturning: boolean, userName: string) {
+    if (isReturning){
+        returningUserDisplay.innerHTML = 'back'
+    }
+    userNameDisplay.innerHTML = userName
+}
+
+populateUser(you.isReturning, you.userName)
