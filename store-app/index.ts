@@ -4,6 +4,11 @@
 // String Types mini-challenge
 // Write a function that will display the most recent reviewers name next to the review total, making sure to assign a type to the parameter, to prevent unwanted behaviour.
 
+// Boolean Types mini-challenge
+// if the last reviewer is a loyalty User, can you add a star to the end of their name?
+// please do so in the existing function, and make sure to declare what type of 
+// parameters the function takes.
+
 const reviewTotalDisplay = document.querySelector('#reviews')
 
 const reviews = [
@@ -33,17 +38,17 @@ const reviews = [
     }
 ]
 
-function totalReviews(value: number, visitor: string) {
-    reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor}`;
+function totalReviews(value: number, visitor: string, isLoyaltyUser: boolean) {
+    reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor} ${isLoyaltyUser === true ? '⭐️' : '' } `;
 }
 
 function formatDate(date: string) {
     return date.split('-').reverse().join('-')
 }
 
-function getLatestDate(reviews: any[]) {
+function getLatestVisitorData(reviews: any[]) {
     let arrayOfDates = []
-    let latestVisitor = '';
+    let latestVisitorObject = {};
     reviews.map(review => {
         if(review['date']) {
             arrayOfDates.push(formatDate(review['date']))
@@ -58,14 +63,18 @@ function getLatestDate(reviews: any[]) {
         if (review['date']) {
             let splittedDate = review['date'].split('-')
             if (splittedDate[0] === convLatestDate) {
-                latestVisitor = review['name']
+                latestVisitorObject = review
             }
         }
     })
 
-    return latestVisitor;
+    return latestVisitorObject;
 }
 
-getLatestDate(reviews)
+getLatestVisitorData(reviews)
 
-totalReviews(reviews.length, getLatestDate(reviews))
+totalReviews(
+    reviews.length, 
+    getLatestVisitorData(reviews)['name'], 
+    getLatestVisitorData(reviews)['loyaltyUser']
+)
