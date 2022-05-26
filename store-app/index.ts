@@ -90,12 +90,21 @@ const you: {
     firstName: string;
     lastName: string;
     isReturning: boolean;
-    age: number
+    age: number;
+    // stayedAt: string[];
+    stayedAt: (string | number)[];
 } = {
     firstName: 'Bobby',
     lastName: 'Samuels',
     isReturning: true,
-    age: 23
+    age: 23,
+    stayedAt: [
+        'lagos',
+        'kano',
+        'jigawa',
+        'delta',
+        23
+    ]
 }
 
 
