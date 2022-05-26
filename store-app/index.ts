@@ -18,7 +18,12 @@ const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 
-const reviews = [
+const reviews: {
+    name: string;
+    stars: number;
+    loyaltyUser: boolean;
+    date: string;
+}[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -90,12 +95,21 @@ const you: {
     firstName: string;
     lastName: string;
     isReturning: boolean;
-    age: number
+    age: number;
+    // stayedAt: string[];
+    stayedAt: (string | number)[];
 } = {
     firstName: 'Bobby',
     lastName: 'Samuels',
     isReturning: true,
-    age: 23
+    age: 23,
+    stayedAt: [
+        'lagos',
+        'kano',
+        'jigawa',
+        'delta',
+        23
+    ]
 }
 
 
