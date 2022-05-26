@@ -86,9 +86,16 @@ totalReviews(
     getLatestVisitorData(reviews)['loyaltyUser']
 )
 
-const you = {
-    userName: 'Bobby',
+const you: {
+    firstName: string;
+    lastName: string;
+    isReturning: boolean;
+    age: number
+} = {
+    firstName: 'Bobby',
+    lastName: 'Samuels',
     isReturning: true,
+    age: 23
 }
 
 
@@ -99,4 +106,4 @@ function populateUser(isReturning: boolean, userName: string) {
     userNameDisplay.innerHTML = userName
 }
 
-populateUser(you.isReturning, you.userName)
+populateUser(you.isReturning, you.firstName)
