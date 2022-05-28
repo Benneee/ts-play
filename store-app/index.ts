@@ -236,3 +236,20 @@ for (let i = 0; i < properties.length; i++) {
 // Place, Time, Weather (celsius)
 let currentLocation: [string, string, number] = ['Lagos', '17:10', 28 ]
 footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°C`
+
+
+function add(firstValue: (number | string), secondValue: (number | string)) {
+    let result
+    if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+        result = firstValue + secondValue
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'string') {
+        result = firstValue + ' ' + secondValue
+    }
+    if (typeof firstValue === 'number' && typeof secondValue === 'string') {
+        console.log('cannot perform this addition')
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+        console.log('cannot perform this addition')
+    }
+}
