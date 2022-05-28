@@ -28,6 +28,11 @@
 // 2. export the enum
 // 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
 
+// Union Types Challenge
+// 1. Fix the function to show the price per night for each property card only
+// if isLoggedIn is true, or the you object has Permissions. (all permissions should work)
+// 2. See what happens when a null object to be passed to the you objects permissions.
+
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
@@ -72,6 +77,8 @@ const reviews: {
         date: '23-03-2022'
     }
 ]
+
+const isLoggedIn = true
 
 function totalReviews(value: number, visitor: string, isLoyaltyUser: UserTypes) {
     reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor} ${isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '' } `;
@@ -142,12 +149,11 @@ totalReviews(
 //     ]
 // }
 
-const ADMIN = 'admin'
-const READ_ONLY = 'read_only'
+
 
 enum Roles {
-    ADMIN,
-    READ_ONLY
+    ADMIN = 'admin',
+    READ_ONLY = 'read_only'
 }
 
 const you = {
@@ -222,6 +228,19 @@ const properties : {
 
 populateUser(you.isReturning, you.firstName)
 
+
+let authorityStatus : (boolean | Roles)
+
+function showDetails(authorityStatus: (boolean | Roles), element : HTMLDivElement, price: number) {
+    console.log("auth: ", authorityStatus)
+
+    if (authorityStatus) {
+        const priceDisplay = document.createElement('div')
+        priceDisplay.innerHTML = price.toString() + '/night'
+        element.appendChild(priceDisplay)
+    }
+}
+
 //Add the properties
 for (let i = 0; i < properties.length; i++) {
     const card = document.createElement('div')
@@ -231,8 +250,26 @@ for (let i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
     propertyContainer.appendChild(card)
+    showDetails(you.permissions, card, properties[i].price)
 }
 
 // Place, Time, Weather (celsius)
 let currentLocation: [string, string, number] = ['Lagos', '17:10', 28 ]
 footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°C`
+
+
+function add(firstValue: (number | string), secondValue: (number | string)) {
+    let result
+    if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+        result = firstValue + secondValue
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'string') {
+        result = firstValue + ' ' + secondValue
+    }
+    if (typeof firstValue === 'number' && typeof secondValue === 'string') {
+        console.log('cannot perform this addition')
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+        console.log('cannot perform this addition')
+    }
+}
