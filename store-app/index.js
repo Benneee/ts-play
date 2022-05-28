@@ -10,10 +10,17 @@
 // our couch surfing website? Do this by assigning types to the parameters
 // we pass to our populateUser function, so that we can be aware of
 // errors in our user objects in the future.
+// Tuples challenge
+// 1. Add an array to the variable of currentLocation I have added. This array
+// must have your current location, time, and degrees celcius of your location
+// NOTE: make sure to make this a Tuple, to only allow those types in that
+// structure.
+// 2. Add this visually to a footer on your site
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
 var propertyContainer = document.querySelector('.properties');
+var footer = document.querySelector('.footer');
 var reviews = [
     {
         name: 'Sheia',
@@ -100,7 +107,7 @@ var properties = [
             code: 45632,
             country: 'Colombia'
         },
-        contact: 'marywinkle@gmail.com',
+        contact: [080912345, 'marywinkle@gmail.com'],
         isAvailable: true
     },
     {
@@ -113,7 +120,7 @@ var properties = [
             code: 343903,
             country: 'Poland'
         },
-        contact: 'garydavis@hotmail.com',
+        contact: [09092437898, 'garydavis@hotmail.com'],
         isAvailable: false
     },
     {
@@ -126,7 +133,7 @@ var properties = [
             code: 35433,
             country: 'United Kingdom'
         },
-        contact: 'andyluger@aol.com',
+        contact: [09086752459, 'andyluger@aol.com'],
         isAvailable: true
     }
 ];
@@ -141,3 +148,6 @@ for (var i = 0; i < properties.length; i++) {
     card.appendChild(image);
     propertyContainer.appendChild(card);
 }
+// Place, Time, Weather (celsius)
+var currentLocation = ['Lagos', '17:10', 28];
+footer.innerHTML = "".concat(currentLocation[0], " ").concat(currentLocation[1], " ").concat(currentLocation[2], "\u00B0C");

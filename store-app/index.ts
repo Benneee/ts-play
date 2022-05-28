@@ -14,10 +14,18 @@
 // we pass to our populateUser function, so that we can be aware of
 // errors in our user objects in the future.
 
+// Tuples challenge
+// 1. Add an array to the variable of currentLocation I have added. This array
+// must have your current location, time, and degrees celcius of your location
+// NOTE: make sure to make this a Tuple, to only allow those types in that
+// structure.
+// 2. Add this visually to a footer on your site
+
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 const propertyContainer = document.querySelector('.properties')
+const footer = document.querySelector('.footer')
 
 const reviews: {
     name: string;
@@ -187,3 +195,7 @@ for (let i = 0; i < properties.length; i++) {
     card.appendChild(image)
     propertyContainer.appendChild(card)
 }
+
+// Place, Time, Weather (celsius)
+let currentLocation: [string, string, number] = ['Lagos', '17:10', 28 ]
+footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}°C`
