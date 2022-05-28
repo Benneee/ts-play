@@ -13,6 +13,7 @@
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
+var propertyContainer = document.querySelector('.properties');
 var reviews = [
     {
         name: 'Sheia',
@@ -66,16 +67,77 @@ function getLatestVisitorData(reviews) {
     });
     return latestVisitorObject;
 }
-getLatestVisitorData(reviews);
-totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
-var you = {
-    userName: 'Bobby',
-    isReturning: true
-};
 function populateUser(isReturning, userName) {
     if (isReturning) {
         returningUserDisplay.innerHTML = 'back';
     }
     userNameDisplay.innerHTML = userName;
 }
-populateUser(you.isReturning, you.userName);
+getLatestVisitorData(reviews);
+totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
+var you = {
+    firstName: 'Bobby',
+    lastName: 'Samuels',
+    isReturning: true,
+    age: 23,
+    stayedAt: [
+        'lagos',
+        'kano',
+        'jigawa',
+        'delta',
+        23
+    ]
+};
+// Array of Properties
+var properties = [
+    {
+        image: '',
+        title: 'Colombian Shack',
+        price: 45,
+        location: {
+            firstLine: 'shack 37',
+            city: 'Bogota',
+            code: 45632,
+            country: 'Colombia'
+        },
+        contact: 'marywinkle@gmail.com',
+        isAvailable: true
+    },
+    {
+        image: '',
+        title: 'Polish Cottage',
+        price: 34,
+        location: {
+            firstLine: 'no 23',
+            city: 'Gdansk',
+            code: 343903,
+            country: 'Poland'
+        },
+        contact: 'garydavis@hotmail.com',
+        isAvailable: false
+    },
+    {
+        image: '',
+        title: 'London Flat',
+        price: 23,
+        location: {
+            firstLine: 'flat 15',
+            city: 'London',
+            code: 35433,
+            country: 'United Kingdom'
+        },
+        contact: 'andyluger@aol.com',
+        isAvailable: true
+    }
+];
+populateUser(you.isReturning, you.firstName);
+//Add the properties
+for (var i = 0; i < properties.length; i++) {
+    var card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = properties[i].title;
+    var image = document.createElement('img');
+    image.setAttribute('src', properties[i].image);
+    card.appendChild(image);
+    propertyContainer.appendChild(card);
+}
