@@ -16,39 +16,54 @@
 // NOTE: make sure to make this a Tuple, to only allow those types in that
 // structure.
 // 2. Add this visually to a footer on your site
+// Enum Types mini-challenge
+// Replace the value of loyaltyUser to a GOLD_USER, SILVER_USER or BRONZE_USER, making sure to
+// use what we learnt about Enums in the previous lesson. Make Sheia GOLD, Andrzej BRONZE 
+// and Omar SILVER.
+// 2. export the enum
+// 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
 var propertyContainer = document.querySelector('.properties');
 var footer = document.querySelector('.footer');
+var GOLD_USER = 'Gold User';
+var BRONZE_USER = 'Bronze User';
+var SILVER_USER = 'Silver User';
+var UserTypes;
+(function (UserTypes) {
+    UserTypes[UserTypes["GOLD"] = 0] = "GOLD";
+    UserTypes[UserTypes["SILVER"] = 1] = "SILVER";
+    UserTypes[UserTypes["BRONZE"] = 2] = "BRONZE";
+})(UserTypes || (UserTypes = {}));
 var reviews = [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.GOLD,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: UserTypes.BRONZE,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.SILVER,
         date: '27-03-2021'
     },
     {
         name: 'Victor',
         stars: 4,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.GOLD,
         date: '23-03-2022'
     }
 ];
 function totalReviews(value, visitor, isLoyaltyUser) {
-    reviewTotalDisplay.innerHTML = "Review Total: ".concat(value.toString(), ", Latest Visitor: ").concat(visitor, " ").concat(isLoyaltyUser === true ? '⭐️' : '', " ");
+    reviewTotalDisplay.innerHTML = "Review Total: ".concat(value.toString(), ", Latest Visitor: ").concat(visitor, " ").concat(isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '', " ");
 }
 function formatDate(date) {
     return date.split('-').reverse().join('-');
@@ -82,11 +97,39 @@ function populateUser(isReturning, userName) {
 }
 getLatestVisitorData(reviews);
 totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
+// const you: {
+//     firstName: string;
+//     lastName: string;
+//     isReturning: boolean;
+//     age: number;
+//     // stayedAt: string[];
+//     stayedAt: (string | number)[];
+// } = {
+//     firstName: 'Bobby',
+//     lastName: 'Samuels',
+//     isReturning: true,
+//     age: 23,
+//     stayedAt: [
+//         'lagos',
+//         'kano',
+//         'jigawa',
+//         'delta',
+//         23
+//     ]
+// }
+var ADMIN = 'admin';
+var READ_ONLY = 'read_only';
+var Roles;
+(function (Roles) {
+    Roles[Roles["ADMIN"] = 0] = "ADMIN";
+    Roles[Roles["READ_ONLY"] = 1] = "READ_ONLY";
+})(Roles || (Roles = {}));
 var you = {
     firstName: 'Bobby',
     lastName: 'Samuels',
     isReturning: true,
     age: 23,
+    permissions: Roles.ADMIN,
     stayedAt: [
         'lagos',
         'kano',

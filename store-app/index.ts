@@ -21,46 +21,60 @@
 // structure.
 // 2. Add this visually to a footer on your site
 
+// Enum Types mini-challenge
+// Replace the value of loyaltyUser to a GOLD_USER, SILVER_USER or BRONZE_USER, making sure to
+// use what we learnt about Enums in the previous lesson. Make Sheia GOLD, Andrzej BRONZE 
+// and Omar SILVER.
+// 2. export the enum
+// 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
+
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
 
+
+enum UserTypes {
+    GOLD = 'Gold User',
+    BRONZE = 'Bronze User',
+    SILVER = 'Silver User'
+}
+
 const reviews: {
     name: string;
     stars: number;
-    loyaltyUser: boolean;
+    loyaltyUser: UserTypes;
     date: string;
 }[] = [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.GOLD,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: UserTypes.BRONZE,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.SILVER,
         date: '27-03-2021'
     },
     {
         name: 'Victor',
         stars: 4,
-        loyaltyUser: true,
+        loyaltyUser: UserTypes.GOLD,
         date: '23-03-2022'
     }
 ]
 
-function totalReviews(value: number, visitor: string, isLoyaltyUser: boolean) {
-    reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor} ${isLoyaltyUser === true ? '⭐️' : '' } `;
+function totalReviews(value: number, visitor: string, isLoyaltyUser: UserTypes) {
+    reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor} ${isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '' } `;
 }
 
 function formatDate(date: string) {
