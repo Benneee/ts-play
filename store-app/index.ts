@@ -107,18 +107,41 @@ totalReviews(
     getLatestVisitorData(reviews)['loyaltyUser']
 )
 
-const you: {
-    firstName: string;
-    lastName: string;
-    isReturning: boolean;
-    age: number;
-    // stayedAt: string[];
-    stayedAt: (string | number)[];
-} = {
+// const you: {
+//     firstName: string;
+//     lastName: string;
+//     isReturning: boolean;
+//     age: number;
+//     // stayedAt: string[];
+//     stayedAt: (string | number)[];
+// } = {
+//     firstName: 'Bobby',
+//     lastName: 'Samuels',
+//     isReturning: true,
+//     age: 23,
+//     stayedAt: [
+//         'lagos',
+//         'kano',
+//         'jigawa',
+//         'delta',
+//         23
+//     ]
+// }
+
+const ADMIN = 'admin'
+const READ_ONLY = 'read_only'
+
+enum Roles {
+    ADMIN,
+    READ_ONLY
+}
+
+const you = {
     firstName: 'Bobby',
     lastName: 'Samuels',
     isReturning: true,
     age: 23,
+    permissions: Roles.ADMIN,
     stayedAt: [
         'lagos',
         'kano',
