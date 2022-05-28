@@ -22,19 +22,20 @@
 // and Omar SILVER.
 // 2. export the enum
 // 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
+// Union Types Challenge
+// 1. Fix the function to show the price per night for each property card only
+// if isLoggedIn is true, or the you object has Permissions. (all permissions should work)
+// 2. See what happens when a null object to be passed to the you objects permissions.
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
 var propertyContainer = document.querySelector('.properties');
 var footer = document.querySelector('.footer');
-var GOLD_USER = 'Gold User';
-var BRONZE_USER = 'Bronze User';
-var SILVER_USER = 'Silver User';
 var UserTypes;
 (function (UserTypes) {
-    UserTypes[UserTypes["GOLD"] = 0] = "GOLD";
-    UserTypes[UserTypes["SILVER"] = 1] = "SILVER";
-    UserTypes[UserTypes["BRONZE"] = 2] = "BRONZE";
+    UserTypes["GOLD"] = "Gold User";
+    UserTypes["BRONZE"] = "Bronze User";
+    UserTypes["SILVER"] = "Silver User";
 })(UserTypes || (UserTypes = {}));
 var reviews = [
     {
@@ -62,6 +63,7 @@ var reviews = [
         date: '23-03-2022'
     }
 ];
+var isLoggedIn = true;
 function totalReviews(value, visitor, isLoyaltyUser) {
     reviewTotalDisplay.innerHTML = "Review Total: ".concat(value.toString(), ", Latest Visitor: ").concat(visitor, " ").concat(isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '', " ");
 }
@@ -117,12 +119,10 @@ totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVis
 //         23
 //     ]
 // }
-var ADMIN = 'admin';
-var READ_ONLY = 'read_only';
 var Roles;
 (function (Roles) {
-    Roles[Roles["ADMIN"] = 0] = "ADMIN";
-    Roles[Roles["READ_ONLY"] = 1] = "READ_ONLY";
+    Roles["ADMIN"] = "admin";
+    Roles["READ_ONLY"] = "read_only";
 })(Roles || (Roles = {}));
 var you = {
     firstName: 'Bobby',
@@ -181,6 +181,15 @@ var properties = [
     }
 ];
 populateUser(you.isReturning, you.firstName);
+var authorityStatus;
+function showDetails(authorityStatus, element, price) {
+    console.log("auth: ", authorityStatus);
+    if (authorityStatus) {
+        var priceDisplay = document.createElement('div');
+        priceDisplay.innerHTML = price.toString() + '/night';
+        element.appendChild(priceDisplay);
+    }
+}
 //Add the properties
 for (var i = 0; i < properties.length; i++) {
     var card = document.createElement('div');
@@ -190,7 +199,23 @@ for (var i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image);
     card.appendChild(image);
     propertyContainer.appendChild(card);
+    showDetails(you.permissions, card, properties[i].price);
 }
 // Place, Time, Weather (celsius)
 var currentLocation = ['Lagos', '17:10', 28];
 footer.innerHTML = "".concat(currentLocation[0], " ").concat(currentLocation[1], " ").concat(currentLocation[2], "\u00B0C");
+function add(firstValue, secondValue) {
+    var result;
+    if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+        result = firstValue + secondValue;
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'string') {
+        result = firstValue + ' ' + secondValue;
+    }
+    if (typeof firstValue === 'number' && typeof secondValue === 'string') {
+        console.log('cannot perform this addition');
+    }
+    if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+        console.log('cannot perform this addition');
+    }
+}
