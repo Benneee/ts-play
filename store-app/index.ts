@@ -33,6 +33,12 @@
 // if isLoggedIn is true, or the you object has Permissions. (all permissions should work)
 // 2. See what happens when a null object to be passed to the you objects permissions.
 
+// Literal Types
+// 1. Based on what we have learnt about literal types with the price, can you make
+// a Country literal type? You only have to include the countries we are dealing with in 
+// the project.
+// 2. Can you create a file and store all your types aliases in there?
+
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
@@ -171,16 +177,19 @@ const you = {
     ]
 }
 
+type Price = 45 | 30 | 25
+type Country = 'Colombia' | 'Poland' | 'United Kingdom'
+
 // Array of Properties
 const properties : {
     image: string;
     title: string;
-    price: number;
+    price: Price;
     location: {
         firstLine: string;
         city: string;
         code: number;
-        country: string;
+        country: Country;
     };
     contact: [number, string];
     isAvailable: boolean;
@@ -201,7 +210,7 @@ const properties : {
     {
         image: '',
         title: 'Polish Cottage',
-        price: 34,
+        price: 30,
         location: {
             firstLine: 'no 23',
             city: 'Gdansk',
@@ -214,7 +223,7 @@ const properties : {
     {
         image: '',
         title: 'London Flat',
-        price: 23,
+        price: 25,
         location: {
             firstLine: 'flat 15',
             city: 'London',
