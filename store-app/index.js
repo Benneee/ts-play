@@ -26,6 +26,14 @@
 // 1. Fix the function to show the price per night for each property card only
 // if isLoggedIn is true, or the you object has Permissions. (all permissions should work)
 // 2. See what happens when a null object to be passed to the you objects permissions.
+// Literal Types
+// 1. Based on what we have learnt about literal types with the price, can you make
+// a Country literal type? You only have to include the countries we are dealing with in 
+// the project.
+// 2. Can you create a file and store all your types aliases in there?
+// Function Return Types + Void Types mini-challenge
+// Instead of having a long 'review total 3', can you make the line say '3 reviews', or '1 review'
+// if there is only one? Use a function to do this and assign a type to the functions return.
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
@@ -65,10 +73,17 @@ var reviews = [
 ];
 var isLoggedIn = true;
 function totalReviews(value, visitor, isLoyaltyUser) {
-    reviewTotalDisplay.innerHTML = "Review Total: ".concat(value.toString(), ", Latest Visitor: ").concat(visitor, " ").concat(isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '', " ");
+    reviewTotalDisplay.innerHTML = "".concat(value, " review").concat(makeMultiple(value), ", Latest Visitor: ").concat(visitor, " ").concat(isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '', " ");
 }
 function formatDate(date) {
     return date.split('-').reverse().join('-');
+}
+function makeMultiple(value) {
+    if (value > 1 || value == 0) {
+        return 's';
+    }
+    else
+        return '';
 }
 function getLatestVisitorData(reviews) {
     var arrayOfDates = [];
@@ -98,7 +113,7 @@ function populateUser(isReturning, userName) {
     userNameDisplay.innerHTML = userName;
 }
 getLatestVisitorData(reviews);
-totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
+totalReviews(1, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
 // const you: {
 //     firstName: string;
 //     lastName: string;
@@ -138,6 +153,8 @@ var you = {
         23
     ]
 };
+// type Price = 45 | 30 | 25
+// type Country = 'Colombia' | 'Poland' | 'United Kingdom'
 // Array of Properties
 var properties = [
     {
@@ -156,7 +173,7 @@ var properties = [
     {
         image: '',
         title: 'Polish Cottage',
-        price: 34,
+        price: 30,
         location: {
             firstLine: 'no 23',
             city: 'Gdansk',
@@ -169,7 +186,7 @@ var properties = [
     {
         image: '',
         title: 'London Flat',
-        price: 23,
+        price: 25,
         location: {
             firstLine: 'flat 15',
             city: 'London',
@@ -183,7 +200,6 @@ var properties = [
 populateUser(you.isReturning, you.firstName);
 var authorityStatus;
 function showDetails(authorityStatus, element, price) {
-    console.log("auth: ", authorityStatus);
     if (authorityStatus) {
         var priceDisplay = document.createElement('div');
         priceDisplay.innerHTML = price.toString() + '/night';
@@ -218,4 +234,7 @@ function add(firstValue, secondValue) {
     if (typeof firstValue === 'string' && typeof secondValue === 'number') {
         console.log('cannot perform this addition');
     }
+}
+function addValues(firstValue, secondValue) {
+    return firstValue + secondValue;
 }
