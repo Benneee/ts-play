@@ -39,6 +39,10 @@
 // the project.
 // 2. Can you create a file and store all your types aliases in there?
 
+// Function Return Types + Void Types mini-challenge
+// Instead of having a long 'review total 3', can you make the line say '3 reviews', or '1 review'
+// if there is only one? Use a function to do this and assign a type to the functions return.
+
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
@@ -87,14 +91,20 @@ const reviews: {
 const isLoggedIn = true
 
 function totalReviews(value: number, visitor: string, isLoyaltyUser: UserTypes) {
-    reviewTotalDisplay.innerHTML = `Review Total: ${value.toString()}, Latest Visitor: ${visitor} ${isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '' } `;
+    reviewTotalDisplay.innerHTML = `${value} review${makeMultiple(value)}, Latest Visitor: ${visitor} ${isLoyaltyUser === UserTypes.GOLD ? '⭐️' : '' } `;
 }
 
 function formatDate(date: string) {
     return date.split('-').reverse().join('-')
 }
 
-function getLatestVisitorData(reviews: any[]) {
+function makeMultiple(value: number): string {
+    if (value > 1 || value == 0) {
+        return 's'
+    } else return ''
+}
+
+function getLatestVisitorData(reviews: any[]): {} {
     let arrayOfDates = []
     let latestVisitorObject = {};
     reviews.map(review => {
@@ -177,19 +187,19 @@ const you = {
     ]
 }
 
-type Price = 45 | 30 | 25
-type Country = 'Colombia' | 'Poland' | 'United Kingdom'
+// type Price = 45 | 30 | 25
+// type Country = 'Colombia' | 'Poland' | 'United Kingdom'
 
 // Array of Properties
 const properties : {
     image: string;
     title: string;
-    price: Price;
+    price: number;
     location: {
         firstLine: string;
         city: string;
         code: number;
-        country: Country;
+        country: string;
     };
     contact: [number, string];
     isAvailable: boolean;
@@ -241,8 +251,6 @@ populateUser(you.isReturning, you.firstName)
 let authorityStatus : (boolean | Roles)
 
 function showDetails(authorityStatus: (boolean | Roles), element : HTMLDivElement, price: number) {
-    console.log("auth: ", authorityStatus)
-
     if (authorityStatus) {
         const priceDisplay = document.createElement('div')
         priceDisplay.innerHTML = price.toString() + '/night'
@@ -281,4 +289,8 @@ function add(firstValue: (number | string), secondValue: (number | string)) {
     if (typeof firstValue === 'string' && typeof secondValue === 'number') {
         console.log('cannot perform this addition')
     }
+}
+
+function addValues(firstValue: number, secondValue: number): number {
+    return firstValue + secondValue
 }
