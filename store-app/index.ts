@@ -59,12 +59,14 @@ enum UserTypes {
     SILVER = 'Silver User'
 }
 
-const reviews: {
+interface Review {
     name: string;
     stars: number;
     loyaltyUser: UserTypes;
     date: string;
-}[] = [
+}
+
+const reviews: Review[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -298,23 +300,13 @@ function addValues(firstValue: number, secondValue: number): number {
     return firstValue + secondValue
 }
 
-function getTopTwoReviews(reviews : { 
-    name: string; 
-    date: string;
-    stars: number;
-    }[]) {
+function getTopTwoReviews(reviews : Review[]): Review[] {
     const sortedReviews = reviews.sort((a, b) => b.stars - a.stars)
     return sortedReviews.slice(0,2)
 }
 
 let count = 0
-function addReviews(array: 
-    {
-        name: string; 
-        stars: number; 
-        loyaltyUser: UserTypes; 
-        date: string
-    }[]) : void {
+function addReviews(array: Review[]) : void {
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
