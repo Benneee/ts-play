@@ -38,6 +38,9 @@ var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var reviewTotalDisplay = document.querySelector('#reviews');
 var propertyContainer = document.querySelector('.properties');
+var reviewContainer = document.querySelector('.reviews');
+var container = document.querySelector('.container');
+var button = document.querySelector('button');
 var footer = document.querySelector('.footer');
 var UserTypes;
 (function (UserTypes) {
@@ -113,7 +116,7 @@ function populateUser(isReturning, userName) {
     userNameDisplay.innerHTML = userName;
 }
 getLatestVisitorData(reviews);
-totalReviews(1, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
+totalReviews(reviews.length, getLatestVisitorData(reviews)['name'], getLatestVisitorData(reviews)['loyaltyUser']);
 // const you: {
 //     firstName: string;
 //     lastName: string;
@@ -238,3 +241,22 @@ function add(firstValue, secondValue) {
 function addValues(firstValue, secondValue) {
     return firstValue + secondValue;
 }
+function getTopTwoReviews(reviews) {
+    var sortedReviews = reviews.sort(function (a, b) { return b.stars - a.stars; });
+    return sortedReviews.slice(0, 2);
+}
+var count = 0;
+function addReviews(array) {
+    if (!count) {
+        count++;
+        var topTwo = getTopTwoReviews(array);
+        for (var i = 0; i < topTwo.length; i++) {
+            var card = document.createElement('div');
+            card.classList.add('review-card');
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name;
+            reviewContainer.appendChild(card);
+        }
+        container.removeChild(button);
+    }
+}
+button.addEventListener('click', function () { return addReviews(reviews); });
