@@ -321,3 +321,28 @@ function addReviews(array: Review[]) : void {
 }
 
 button.addEventListener('click', () => addReviews(reviews))
+
+// Classes
+class Car {
+    make: string;
+    year: number;
+    color: string;
+
+    constructor(make: string, year: number, color: string) {
+        this.make = make;
+        this.year = year;
+        this.color = color;
+    }
+}
+
+class MainImage {
+    src: string;
+    title: string;
+    reviews: Review[]
+
+    constructor(src: string, title: string, reviews: Review[]) {
+        this.src = src
+        this.title = title
+        this.reviews = reviews
+    }
+}
