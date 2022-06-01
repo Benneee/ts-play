@@ -47,6 +47,9 @@ const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 const propertyContainer = document.querySelector('.properties')
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
+const button = document.querySelector('button')
 const footer = document.querySelector('.footer')
 
 
@@ -294,3 +297,35 @@ function add(firstValue: (number | string), secondValue: (number | string)) {
 function addValues(firstValue: number, secondValue: number): number {
     return firstValue + secondValue
 }
+
+function getTopTwoReviews(reviews : { 
+    name: string; 
+    date: string;
+    stars: number;
+    }[]) {
+    const sortedReviews = reviews.sort((a, b) => b.stars - a.stars)
+    return sortedReviews.slice(0,2)
+}
+
+let count = 0
+function addReviews(array: 
+    {
+        name: string; 
+        stars: number; 
+        loyaltyUser: UserTypes; 
+        date: string
+    }[]) : void {
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
