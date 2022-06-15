@@ -59,11 +59,27 @@ enum UserTypes {
     SILVER = 'Silver User'
 }
 
+type Price = 45 | 30 | 25
+type Country = 'Colombia' | 'Poland' | 'United Kingdom'
 interface Review {
     name: string;
     stars: number;
     loyaltyUser: UserTypes;
     date: string;
+}
+
+interface Property {
+    image: string;
+    title: string;
+    price: Price,
+    location: {
+        firstLine: string;
+        city: string;
+        code: number | string;
+        country: Country;
+    }
+    contact: [number, string]
+    isAvailable: boolean;
 }
 
 const reviews: Review[] = [
@@ -192,23 +208,9 @@ const you = {
     ]
 }
 
-// type Price = 45 | 30 | 25
-// type Country = 'Colombia' | 'Poland' | 'United Kingdom'
 
 // Array of Properties
-const properties : {
-    image: string;
-    title: string;
-    price: number;
-    location: {
-        firstLine: string;
-        city: string;
-        code: number;
-        country: string;
-    };
-    contact: [number, string];
-    isAvailable: boolean;
-}[] = [
+const properties: Property[] = [
     {
         image: '',
         title: 'Colombian Shack',
@@ -335,7 +337,7 @@ class Car {
     }
 }
 
-class MainImage {
+class MainProperty {
     src: string;
     title: string;
     reviews: Review[]
@@ -346,3 +348,19 @@ class MainImage {
         this.reviews = reviews
     }
 }
+
+let yourMainProperty = new MainProperty('images/italian-property.jpg', 'Italian House', 
+    [
+        {
+            name: 'Olive',
+            stars: 5,
+            loyaltyUser: UserTypes.GOLD,
+            date: '12-04-2021'
+        }
+    ]
+)
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
