@@ -59,8 +59,8 @@ enum UserTypes {
     SILVER = 'Silver User'
 }
 
-type Price = 45 | 30 | 25
-type Country = 'Colombia' | 'Poland' | 'United Kingdom'
+type Price = 45 | 30 | 25 | 35
+type Country = 'Colombia' | 'Poland' | 'United Kingdom' | 'Malaysia'
 interface Review {
     name: string;
     stars: number;
@@ -249,6 +249,19 @@ const properties: Property[] = [
         },
         contact: [09086752459, 'andyluger@aol.com'],
         isAvailable: true
+    },
+    {
+        image: '',
+        title: 'Malia Hotel',
+        price: 35,
+        location: {
+            firstLine: 'Room 4',
+            city: 'Malia',
+            code: 45334,
+            country: 'Malaysia'
+        },
+        contact: [+60349822083, 'lee34@gmail.com'],
+        isAvailable: false
     }
 ]
 
@@ -273,8 +286,8 @@ for (let i = 0; i < properties.length; i++) {
     const image = document.createElement('img')
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
-    propertyContainer.appendChild(card)
     showDetails(you.permissions, card, properties[i].price)
+    propertyContainer.appendChild(card)
 }
 
 // Place, Time, Weather (celsius)
