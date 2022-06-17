@@ -61,7 +61,7 @@ export enum UserTypes {
 
 export type Price = 45 | 30 | 25 | 35
 export type Country = 'Colombia' | 'Poland' | 'United Kingdom' | 'Malaysia'
-interface Review {
+export interface Review {
     name: string;
     stars: number;
     loyaltyUser: UserTypes;
