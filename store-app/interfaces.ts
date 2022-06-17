@@ -1,7 +1,6 @@
 import { UserTypes, Price, Country } from ".";
 
 
-
 interface Review {
     name: string;
     stars: number;
