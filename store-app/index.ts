@@ -53,14 +53,14 @@ const button = document.querySelector('button')
 const footer = document.querySelector('.footer')
 
 
-enum UserTypes {
+export enum UserTypes {
     GOLD = 'Gold User',
     BRONZE = 'Bronze User',
     SILVER = 'Silver User'
 }
 
-type Price = 45 | 30 | 25 | 35
-type Country = 'Colombia' | 'Poland' | 'United Kingdom' | 'Malaysia'
+export type Price = 45 | 30 | 25 | 35
+export type Country = 'Colombia' | 'Poland' | 'United Kingdom' | 'Malaysia'
 interface Review {
     name: string;
     stars: number;
