@@ -74,7 +74,7 @@ body {
     background-color: coral;
 }
 
-.get-reviews {
+button {
     background-color: green;
     color: white;
     border-radius: 5px;
@@ -82,6 +82,6 @@ body {
     padding: 10px;
 }
 
-.get-reviews:hover {
-    background-color: darkgoldenrod;
+button:hover {
+    background-color: goldenrod;
 }

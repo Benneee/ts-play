@@ -156,8 +156,6 @@ var you = {
         23
     ]
 };
-// type Price = 45 | 30 | 25
-// type Country = 'Colombia' | 'Poland' | 'United Kingdom'
 // Array of Properties
 var properties = [
     {
@@ -198,6 +196,19 @@ var properties = [
         },
         contact: [09086752459, 'andyluger@aol.com'],
         isAvailable: true
+    },
+    {
+        image: '',
+        title: 'Malia Hotel',
+        price: 35,
+        location: {
+            firstLine: 'Room 4',
+            city: 'Malia',
+            code: 45334,
+            country: 'Malaysia'
+        },
+        contact: [+60349822083, 'lee34@gmail.com'],
+        isAvailable: false
     }
 ];
 populateUser(you.isReturning, you.firstName);
@@ -214,11 +225,11 @@ for (var i = 0; i < properties.length; i++) {
     var card = document.createElement('div');
     card.classList.add('card');
     card.innerHTML = properties[i].title;
-    var image = document.createElement('img');
-    image.setAttribute('src', properties[i].image);
-    card.appendChild(image);
-    propertyContainer.appendChild(card);
+    var image_1 = document.createElement('img');
+    image_1.setAttribute('src', properties[i].image);
+    card.appendChild(image_1);
     showDetails(you.permissions, card, properties[i].price);
+    propertyContainer.appendChild(card);
 }
 // Place, Time, Weather (celsius)
 var currentLocation = ['Lagos', '17:10', 28];
@@ -260,3 +271,32 @@ function addReviews(array) {
     }
 }
 button.addEventListener('click', function () { return addReviews(reviews); });
+// Classes
+var Car = /** @class */ (function () {
+    function Car(make, year, color) {
+        this.make = make;
+        this.year = year;
+        this.color = color;
+    }
+    return Car;
+}());
+var MainProperty = /** @class */ (function () {
+    function MainProperty(src, title, reviews) {
+        this.src = src;
+        this.title = title;
+        this.reviews = reviews;
+    }
+    return MainProperty;
+}());
+var yourMainProperty = new MainProperty('images/italian-property.jpg', 'Italian House', [
+    {
+        name: 'Olive',
+        stars: 5,
+        loyaltyUser: UserTypes.GOLD,
+        date: '12-04-2021'
+    }
+]);
+var mainImageContainer = document.querySelector('.main-image');
+var image = document.createElement('img');
+image.setAttribute('src', yourMainProperty.src);
+mainImageContainer.appendChild(image);
